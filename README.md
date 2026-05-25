@@ -15,6 +15,7 @@ A GIS portfolio project analysing the **marginal accessibility gain** from Dubli
 
 - [Interactive map](https://conorfahy99.github.io/MetroLink-Accessibility-Dublin/metrolink_interactive_map.html)
 - [Findings infographic](https://conorfahy99.github.io/MetroLink-Accessibility-Dublin/findings_infographic.html)
+- [Case study](CASE_STUDY.md)
 
 ## Method
 
