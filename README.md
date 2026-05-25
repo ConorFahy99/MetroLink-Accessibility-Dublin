@@ -14,11 +14,15 @@ who currently have none.
   MetroLink's marginal gain skews toward deprived communities
 - Cost per newly served resident: **€340,700** (€9.5bn project cost)
 
+## Preview
+
+![MetroLink deprivation map — deprivation decile by Small Area, Dublin 2022](MetroLink_Deprivation_Map_web.png)
+
 ## Deliverables
 
-- [Interactive map](metrolink_interactive_map.html) — Leaflet, layers toggleable
-- [Findings infographic](findings_infographic.html) — headline metrics
-- [Deprivation map](metrolink_deprivation_map.png) — static print layout
+- [Interactive map](metrolink_interactive_map.html)
+- [Findings infographic](findings_infographic.html)
+- [Full-resolution map (PDF)](metrolink_deprivation_map.pdf)
 
 ## Method
 
