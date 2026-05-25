@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MetroLink — Marginal Accessibility Gain</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-bg: #ffffff;
+      --color-bg-secondary: #f4f3ef;
+      --color-text-primary: #1a1a1a;
+      --color-text-secondary: #6b6b68;
+      --color-text-tertiary: #9b9b98;
+      --color-border: rgba(0,0,0,0.12);
+      --color-accent: #1D9E75;
+      --color-accent-light: #E1F5EE;
+      --color-accent-dark: #0F6E56;
+      --color-gray-bar: #888780;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #1c1c1a;
+        --color-bg-secondary: #2a2a27;
+        --color-text-primary: #f0efe9;
+        --color-text-secondary: #a8a8a4;
+        --color-text-tertiary: #6e6e6b;
+        --color-border: rgba(255,255,255,0.1);
+        --color-accent: #5DCAA5;
+        --color-accent-light: #04342C;
+        --color-accent-dark: #9FE1CB;
+        --color-gray-bar: #b4b2a9;
+      }
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--color-bg);
+      color: var(--color-text-primary);
+      padding: 3rem 2rem;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .kicker {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+
+    .sub {
+      font-size: 15px;
+      color: var(--color-text-secondary);
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 0.7rem;
+    }
+
+    /* Metric grid */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .metric-card {
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.15rem;
+    }
+
+    .metric-card.accent {
+      border-left: 3px solid var(--color-accent);
+      padding-left: calc(1.15rem - 3px);
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      line-height: 1.1;
+    }
+
+    .metric-unit {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+    }
+
+    /* LA breakdown */
+    .breakdown {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .bd-item {
+      flex: 1;
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 0.9rem 1rem;
+    }
+
+    .bd-label {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .bd-value {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .bd-share {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+    }
+
+    /* Catchment bar */
+    .bar-section { margin-bottom: 2rem; }
+
+    .bar-track {
+      display: flex;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 12px;
+      margin-bottom: 8px;
+    }
+
+    .bar-existing { background: var(--color-gray-bar); width: 60%; }
+    .bar-gain { background: var(--color-accent); width: 1.9%; }
+    .bar-none { flex: 1; background: var(--color-bg-secondary); }
+
+    .bar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend-swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* Cost ribbon */
+    .ribbon {
+      background: var(--color-bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .ribbon-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--color-accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .ribbon-value {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 3px;
+    }
+
+    .ribbon-text {
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* Methodology note */
+    .method-note {
+      font-size: 12px;
+      color: var(--color-text-tertiary);
+      border-top: 0.5px solid var(--color-border);
+      padding-top: 1.25rem;
+      line-height: 1.7;
+    }
+
+    /* Divider */
+    .divider {
+      height: 0.5px;
+      background: var(--color-border);
+      margin: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="kicker">MetroLink — Marginal accessibility gain</p>
+  <h1>27,876 residents newly served</h1>
+  <p class="sub">Brought within a 10-minute walk of high-capacity rail for the first time — residents who currently have none.</p>
+
+  <p class="section-label">Headline figures</p>
+  <div class="metric-grid">
+    <div class="metric-card accent">
+      <p class="metric-label">Newly served residents</p>
+      <p class="metric-value">27,876</p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Marginal gain area</p>
+      <p class="metric-value">9.11 <span class="metric-unit">km²</span></p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Share of Dublin population</p>
+      <p class="metric-value">1.9<span class="metric-unit">%</span></p>
+    </div>
+    <div class="metric-card">
+      <p class="metric-label">Small Areas intersected</p>
+      <p class="metric-value">159</p>
+    </div>
+  </div>
+
+  <p class="section-label">Breakdown by local authority</p>
+  <div class="breakdown">
+    <div class="bd-item">
+      <p class="bd-label">Dublin City</p>
+      <p class="bd-value">21,336</p>
+      <p class="bd-share">77% of marginal gain</p>
+    </div>
+    <div class="bd-item">
+      <p class="bd-label">Fingal</p>
+      <p class="bd-value">6,540</p>
+      <p class="bd-share">23% of marginal gain</p>
+    </div>
+  </div>
+
+  <p class="section-label">Catchment context — Dublin population (1,458,154)</p>
+  <div class="bar-section">
+    <div class="bar-track">
+      <div class="bar-existing" title="Existing rail coverage (estimated ~60%)"></div>
+      <div class="bar-gain" title="MetroLink marginal gain (1.9%)"></div>
+      <div class="bar-none" title="No high-capacity rail access"></div>
+    </div>
+    <div class="bar-legend">
+      <span class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-gray-bar);"></span>
+        Existing rail baseline
+      </span>
+      <span class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-accent);"></span>
+        MetroLink marginal gain (+1.9%)
+      </span>
+      <span class="legend-item">
+        <span class="legend-swatch" style="background: var(--color-bg-secondary); border: 0.5px solid var(--color-border);"></span>
+        No high-capacity rail
+      </span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="section-label">Cost efficiency</p>
+  <div class="ribbon">
+    <div class="ribbon-icon">
+      <i class="ti ti-building-bank" style="font-size: 18px; color: var(--color-accent-dark);"></i>
+    </div>
+    <div>
+      <p class="ribbon-value">€340,700 per newly served resident</p>
+      <p class="ribbon-text">
+        Based on a €9.5bn project cost and 27,876 marginal residents. MetroLink's primary case rests on
+        network connectivity, journey time reduction, and induced demand — not residential catchment alone.
+        This figure is an honest counter-finding and should be contextualised in any public-facing write-up.
+      </p>
+    </div>
+  </div>
+
+  <p class="method-note">
+    <strong>Method:</strong> Areal-weighted population apportionment from CSO Census 2022 Small Areas (SAPS, column T1_1AGETT).
+    Marginal gain polygon derived by Vector Difference: MetroLink 10-minute walking isochrone (ORS Tools, foot-walking, 4.8 km/h)
+    minus existing DART, Luas Green Line, Luas Red Line, and commuter rail catchment (TFI GTFS, route_type 0 and 2).
+    Bus and BusConnects corridors excluded — "high-capacity rail/LRT" definition applied consistently.
+    Analysis CRS: EPSG:2157 (Irish Transverse Mercator). Study extent: Dublin City, Fingal, South Dublin, Dún Laoghaire-Rathdown.
+    MetroLink alignment based on current Railway Order; subject to change.
+  </p>
+
+</body>
+</html>
