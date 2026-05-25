@@ -2,7 +2,7 @@
 
 A GIS portfolio project analysing the **marginal accessibility gain** from Dublin's proposed MetroLink line: residents newly within a 10-minute walk of high-capacity rail who currently have none.
 
-![MetroLink deprivation map](https://raw.githubusercontent.com/ConorFahy99/MetroLink-Accessibility-Dublin/main/MetroLink_Deprivation_Map_web.png)
+![MetroLink deprivation map](https://raw.githubusercontent.com/ConorFahy99/MetroLink-Accessibility-Dublin/main/MetroLink_Deprivation_Map.png)
 
 ## Key findings
 
