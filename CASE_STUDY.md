@@ -71,7 +71,9 @@ MetroLink's marginal catchment skews toward deprived communities — particularl
 
 ## Limitations
 
-The MetroLink alignment is based on the current Railway Order and may change before construction. Walking isochrones use a generalised street network and assume a flat 4.8 km/h pace — individual accessibility will vary. The analysis covers residential population only; a full assessment would incorporate workplace catchment using POWSCAR data. The deprivation proxy is not validated against the official HP Index.
+The MetroLink alignment is based on the current Railway Order and may change before construction. Walking isochrones use a generalised street network and assume a flat 4.8 km/h pace — individual accessibility will vary. The deprivation proxy is not validated against the official HP Index.
+
+The larger limitation is what walk-up residential catchment cannot see. MetroLink is primarily an airport-and-interchange line, and that orientation makes a residential catchment count understate its benefit by design. Several stations sit where almost nobody lives — Dublin Airport, Estuary, Dardistown, and partly Northwood — so roughly a third of the alignment was never intended to capture walk-up population. The 27,876 figure therefore excludes the benefit channels that justify the scheme: airport passengers and the airport's ~20,000-plus workers drawn from across the region; park-and-ride and feeder-bus access that extends catchment well beyond walking distance; and network-wide gains from new rail-to-rail interchanges at Glasnevin, Tara, O'Connell Street, St Stephen's Green and Charlemont, which let residents far outside the walk catchment reach the airport or cross the city via a single transfer. The residential figure is accurate for what it measures; it is not a measure of the line's total value. A fuller assessment would treat workplace catchment (POWSCAR) as a co-primary metric alongside residents, since the airport and the Swords corridor are large employment sites that residential catchment cannot register.
 
 ---
 
